@@ -19,8 +19,10 @@ var app = app || {};
 		events: {
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
-			//added edit functionality to edit-btn
+			//added edit functionality to edit-btn. See documentation on declarative events in BackboneJS. under View.
 			'click .edit-btn': 'edit',
+			//added priority functionality to priority-btn. TL
+			'click .priority-btn': 'togglePriority', 
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
@@ -52,6 +54,8 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
+			// adds class of 'priority' when the item state is priority. TL
+			this.$el.toggleClass('priority', this.model.get('priority'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
@@ -70,6 +74,11 @@ var app = app || {};
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
 			this.model.toggle();
+		},
+
+		// Toggle the `"priority"` state of the model. TL
+		togglePriority: function () {
+			this.model.togglePriority();
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.
