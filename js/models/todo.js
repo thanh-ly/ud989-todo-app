@@ -1,6 +1,6 @@
 /*global Backbone */
 var app = app || {};
-//IIFE, objects within the anon function does not pollute the global scope
+//IIFE moddule patern, objects within the anon function does not pollute the global scope in the window object
 (function () {
 	'use strict';
 
